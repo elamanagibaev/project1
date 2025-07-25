@@ -43,6 +43,11 @@ func main() {
 		line = logics.ProcessLow(line)
 		line = logics.ProcessCap(line)
 		line = logics.ProcessHex(line)
+		line = logics.ProcessBin(line)
+		line = logics.ProcessUpN(line)
+		line = logics.ProcessLowN(line)
+		line = logics.ProcessCapN(line)
+
 		_, err := writer.WriteString(line + "\n")
 		if err != nil {
 			fmt.Println("❌ Ошибка записи:", err)

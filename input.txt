@@ -16,3 +16,5 @@ hello (cap)
 elaman (cap)
 kurik (cap)
 kURIK (cap)
+
+1101 (bin)
