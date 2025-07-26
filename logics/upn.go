@@ -8,18 +8,37 @@ import (
 func ProcessUpN(line string) string {
 	words := strings.Fields(line)
 
-	for i := 0; i < len(words); i++ {
+	for i := range words {
 		if strings.HasPrefix(words[i], "(up,") && strings.HasSuffix(words[i], ")") {
-			nStr := strings.TrimSuffix(strings.TrimPrefix(words[i], "(up,"), ")")
-			n, err := strconv.Atoi(strings.TrimSpace(nStr))
-			if err == nil && i-n >= 0 {
-				for j := i - n; j < i; j++ {
-					words[j] = strings.ToUpper(words[j])
-				}
-				words[i] = ""
+			marker := strings.TrimPrefix(words[i], "(up,")
+			marker = strings.TrimSuffix(marker, ")")
+			nStr := strings.TrimSpace(marker)
+
+			n, err := strconv.Atoi(nStr)
+			if err != nil {
+				continue
 			}
+
+			start := i - n
+			if start < 0 {
+				start = 0
+			}
+
+			for j := start; j < i; j++ {
+				base, punct := CleanWord(words[j])
+				words[j] = strings.ToUpper(base) + punct
+			}
+
+			words[i] = ""
 		}
 	}
 
-	return strings.Join(words, " ")
+	var filtered []string
+	for _, w := range words {
+		if w != "" {
+			filtered = append(filtered, w)
+		}
+	}
+
+	return strings.Join(filtered, " ")
 }
