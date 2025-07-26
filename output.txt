@@ -1,20 +1,20 @@
-ELAMAN 
-ELAMAN 
-KURIK 
+ELAMAN
+ELAMAN
+KURIK
 
-ELAMAN 
+ELAMAN
 
-elaman 
+elaman
 
-elaman  ELAMAN
+elaman ELAMAN
 
-elaman 
+elaman
 
-elaman 
+elaman
 
-Hello 
-Elaman 
-Kurik 
-Kurik 
+Hello
+Elaman
+Kurik
+KURIK
 
-13 
+0b10001001101
