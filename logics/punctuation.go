@@ -3,12 +3,20 @@ package logics
 import "strings"
 
 func CleanWord(word string) (string, string) {
-	if len(word) == 0 {
+	if word == "" {
 		return "", ""
 	}
-	last := word[len(word)-1]
-	if strings.ContainsRune(",.!?:;'", rune(last)) {
-		return word[:len(word)-1], string(last)
+
+	punctuation := ",.!?:;\"'’…—–•™©!?”“"
+	runes := []rune(word)
+	end := len(runes)
+
+	for end > 0 && strings.ContainsRune(punctuation, runes[end-1]) {
+		end--
 	}
-	return word, ""
+
+	base := string(runes[:end])
+	punct := string(runes[end:])
+
+	return base, punct
 }

@@ -13,7 +13,7 @@ func main() {
 
 	in, err := os.Open(inputFile)
 	if err != nil {
-		fmt.Println(" Ошибка при открытии файла:", err)
+		fmt.Println("Ошибка при открытии файла:", err)
 		return
 	}
 	defer in.Close()
@@ -30,7 +30,7 @@ func main() {
 
 	writer.Flush()
 
-	fmt.Println(" Файл успешно обработан.")
+	fmt.Println("Файл успешно обработан.")
 
 	for scanner.Scan() {
 		line := scanner.Text()
