@@ -34,22 +34,28 @@ func TestAll(t *testing.T) {
 
 func TestPunctuation(t *testing.T) {
 	tests := []struct {
-		input string
-		base  string
-		punct string
+		input         string
+		expectedBase  string
+		expectedPunct string
 	}{
-		{"elaman,", "elaman", ","},
-		{"word.", "word", "."},
-		{"hello!", "hello", "!"},
-		{"simple", "simple", ""},
+		{"hello,", "hello", ","},
+		{"world.", "world", "."},
+		{"wow!", "wow", "!"},
+		{"maybe?", "maybe", "?"},
+		{"okay:", "okay", ":"},
+		{"yes;", "yes", ";"},
+		{"it's'", "it's", "'"},
+		{"Elaman'", "Elaman", "'"},
+		{"fine", "fine", ""},
 		{"", "", ""},
+		{"'hello'", "'hello", "'"},
 	}
 
-	for _, test := range tests {
-		base, punct := CleanWord(test.input)
-		if base != test.base || punct != test.punct {
-			t.Errorf(" CleanWord(\"%s\"): expected base=\"%s\", punct=\"%s\" → got base=\"%s\", punct=\"%s\"",
-				test.input, test.base, test.punct, base, punct)
+	for _, tt := range tests {
+		base, punct := CleanWord(tt.input)
+		if base != tt.expectedBase || punct != tt.expectedPunct {
+			t.Errorf("❌ CleanWord(%q): expected base=%q, punct=%q → got base=%q, punct=%q",
+				tt.input, tt.expectedBase, tt.expectedPunct, base, punct)
 		}
 	}
 }

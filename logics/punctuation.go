@@ -7,7 +7,7 @@ func CleanWord(word string) (string, string) {
 		return "", ""
 	}
 	last := word[len(word)-1]
-	if strings.ContainsRune(",.!?:;", rune(last)) {
+	if strings.ContainsRune(",.!?:;'", rune(last)) {
 		return word[:len(word)-1], string(last)
 	}
 	return word, ""
